@@ -1,3 +1,1 @@
-# ethienduckett.github.io
-welcome to the most static website on the internet.
-[get less static ->][index.html]
+# [ethienduckett.github.io](ethienduckett.github.io)
