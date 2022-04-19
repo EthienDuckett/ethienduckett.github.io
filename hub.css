@@ -1,0 +1,87 @@
+html,body {
+	margin:0px;
+}
+body {
+	background-image: repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, #bf3751 0,  #d5c3c3 50%);
+	background-size: 100% 100%;
+}
+p {
+	margin:0;
+	font-size:3em;
+	text-align:center;
+	width:fit-content;
+	margin-left:auto;
+}
+span {
+	text-align:right;
+	
+}
+a {
+	text-decoration:none;
+	font-family: 'Inter', Arial;
+}
+.places {
+	width:100%;
+	margin:0%;
+	padding:0%;
+	display:flex;
+	flex-direction:column;
+}
+.place {
+	width:100%;
+	margin:0%;
+	padding:0%;
+	display:flex;
+	flex-direction:column-reverse;
+	margin-bottom:100px;
+}
+.inner_row {
+	width:100%;
+	display:flex;
+	flex-direction:row;
+	align-items:flex-end;
+}
+.inner_row>div {
+	flex-basis:1000px;
+	flex-grow:3;
+}
+.inner_row>.right {
+	flex-grow:1 !important;
+	flex-shrink:3;
+}
+
+img {
+	max-width:100%;
+}
+
+
+footer {
+	background-color:black;
+	border-radius:10px;
+}
+footer>div {
+	background-color:black;
+	margin:10px;
+}
+footer>div>p {
+	font-size:1em;
+	font-family:Arial;
+	text-align:left;
+	margin:0;
+	width:100%;
+	color:white;
+	margin-bottom:10px;
+}
+
+footer>div>p>a {
+	text-decoration:aliceblue;
+	color:black;
+	background-color:white;
+}
+
+
+@media (max-width:900px) {
+	.inner_row>div {
+		/* I happened upon this efficient fix by chance, I think it works because the empty divs have no content and thus are given a width of 0 automatically.*/
+		flex-basis:auto;
+	}
