@@ -1,1 +1,2 @@
 # [ethienduckett.github.io](https://ethienduckett.github.io)
+After I cut off ties with my father I also lost any sense of familiarity to the website https://ejware.com. I have since stopped blogging there entirely and deleted everything I posted. **There is nothing for you to see on ejware.com**. I decided to create ethienduckett.github.io as a semi-permanent replacement. I don't have a use for backend processing so I probably won't ever take this website off of github.
