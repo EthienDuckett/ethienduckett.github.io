@@ -1,0 +1,37 @@
+body>span>div {
+	margin-bottom: 40vh;
+}
+body>span>div>h1 {
+	text-align:center;
+}
+html {
+	background-color:orange;
+	min-height:100%;
+	color:orange;
+}
+body {
+	background-color:black;
+	min-height:100vh;
+}
+#centerpiece {
+	text-align:center;
+}
+.controller {
+	width:100%;
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+	flex-direction:row;
+}
+.controller>div>button {
+	color:orange;
+	background-color:black;
+	border-color:orange;
+}
+#blogs {
+	display:flex;
+	flex-direction:column;
+}
+.blog {
+	border:orange dotted 1px;
+}
