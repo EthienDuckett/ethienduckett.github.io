@@ -1,3 +1,32 @@
+// https://w3schools.com/js/js_cookies.asp (Unknown license) Unmodified
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+// End of w3schools snippet
+// Convenience functions:
+function setIndex(i) {
+	setCookie("index", String(i), "7");
+}
+function getIndex() {
+	return Number(getCookie("index"));
+}
 window.onload = (function () {
 	let URL="https://ethienduckett.github.io/blog/database.json"
 	fetch(URL)
@@ -5,16 +34,12 @@ window.onload = (function () {
 			.then(json => {
 				console.log("Successful database fetch");
 				window.database = json;
-				let count = document.createElement("meta");
-				count.id = "blog_index";
-				count.index = "0";
-				document.getRootNode().children[0].appendChild(count);
+				setIndex(0);
 				nextPage();
 			});
 })
 function nextPage(){
-	let count = document.getElementById("blog_index");
-	let index = Number(count.index);
+	let index = getIndex();
 	let blogs = document.getElementsByClassName("blog");
 	if (window.lastPaging == "prev") {
 		index += blogs.length;
@@ -40,16 +65,15 @@ function nextPage(){
 		blog.children[2].children[1].innerHTML = `<a href="${start_file}">${re.exec(start_file)}</a>`;
 		index++;
 		if (index >= blogs.length) {
-			count.index = String(index);
+			setIndex(index);
 			return;
 		}
 	}
-	count.index = String(index);
+	setIndex(index);
 }
 
 function prevPage(){
-	let count = document.getElementById("blog_index");
-	let index = Number(count.index);
+	let index = getIndex();
 	let blogs = document.getElementsByClassName("blog");
 	if (window.lastPaging == "next") {
 		index -= blogs.length;
@@ -81,10 +105,9 @@ function prevPage(){
 		blog.children[2].children[1].innerHTML = `<a href="${start_file}">${re.exec(start_file)}</a>`;
 		index--;
 		if (index <= 0) {
-			index = 0
-			count.index = String(index);
+			setIndex(0);
 			return;
 		}
 	}
-	count.index = String(index);
+	setIndex(index);
 }
