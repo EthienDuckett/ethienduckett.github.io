@@ -1,12 +1,12 @@
 {
 	"A test blog": {
 		"creation_time": "Thu 21 Apr 2022 08:01:29 PM UTC",
-		"hook": "There is nothing important in this blog, so you shouldn't read it.",
-		"start_file": "space in name/another_test.html"
+		"hook": "There is nothing important in this specific blog, so you shouldn't read it.",
+		"start_file": "blogs/another_test.html"
 	},
 	"Hello world!": {
 		"creation_time": "Thu 21 Apr 2022 12:09:12 AM UTC",
 		"hook": "My very first blog. In it I lay out a few short plans and create my first blog.",
-		"start_file": "space in name/hello_world.html"
+		"start_file": "blogs/hello_world.html"
 	}
 }
