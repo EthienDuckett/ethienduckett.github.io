@@ -34,6 +34,8 @@ window.onload = (function () {
 			.then(json => {
 				console.log("Successful database fetch");
 				window.database = json;
+				window.keys = Object.keys(window.database);
+				window.len = window.keys.length;
 				setIndex(0);
 				nextPage();
 			});
@@ -43,22 +45,25 @@ function copyIndex() {
 }
 function goToIndex(inputID) {
 	let input = document.getElementById(inputID);
-	try {
-		let num =Number(input.value);
-		if (isNaN(num)) {
-			throw "Not a number";
-		}
-	} catch (e) {
-		console.log(`error going to index ${e}`);
-		alert(`error going to index ${input.value}: ${e}`);
+	let num = Number(input.value)
+	if (isNaN(num)) {
+		console.log(`index is Not a Number`);
+		alert(`${input.value} is not a number`);
 		return;
 	}
-	let num = Number(input.value);
-	let blogs = document.getElementsByClassName("blog");
-	if (num >= blogs.length) {
-		num = blogs.length-1
+	if (num >= window.len) {
+		num = window.len-1
 	} else if (num < 0) {
 		num = 0;
+	}
+	let blogs = document.getElementsByClassName("blog");
+	// Clear blogs
+	for (blog of blogs) {
+		blog.children[0].innerHTML = "";
+		blog.children[1].innerHTML = "";
+		blog.children[2].children[0].innerHTML = "";
+		let start_file = "";
+		blog.children[2].children[1].innerHTML = "";
 	}
 	setIndex(num);
 	nextPage();
@@ -68,29 +73,30 @@ function nextPage(){
 	let blogs = document.getElementsByClassName("blog");
 	if (window.lastPaging == "prev") {
 		index += blogs.length;
-		if (index >= blogs.length) {
-			index=blogs.length;
+		if (index >= window.len) {
+			index=len;
 		}
 	}
 	window.lastPaging = "next";
-	if (index >= blogs.length) {
+	if (index >= window.len) {
+		setIndex(len);
 		alert("There are no more blogs left");
 		return;
 	}
 	const re = new RegExp("(?<=\/).*");
+	
 	for (const blog of blogs) {
-		let name = Object.keys(window.database)[index];
+		let name = window.keys[index];
 		let blog_data = window.database[name];
 
 		blog.children[0].innerHTML = name;
 		blog.children[1].innerHTML = blog_data["hook"];
 		blog.children[2].children[0].innerHTML = blog_data["creation_time"];
-		
 		let start_file = blog_data["start_file"];
 		blog.children[2].children[1].innerHTML = `<a href="${start_file}">${re.exec(start_file)}</a>`;
 		index++;
-		if (index >= blogs.length) {
-			setIndex(index);
+		if (index >= window.len) {
+			setIndex(len);
 			return;
 		}
 	}
@@ -108,19 +114,19 @@ function prevPage(){
 	}
 	window.lastPaging = "prev";
 	console.log("prevPage()");
-	if (index-blogs.length+1 <= 0) {
+	if (index-len+1 <= 0) {
 		alert("There are no more blogs left");
 		return;
 	}
-	if (index >= blogs.length) {
-		index--;
+	if (index >= window.len) {
+		index = window.len-1;
 	}
 	const re = new RegExp("(?<=\/).*");
 	let blog;
 	for (let i = blogs.length-1; i >= 0; i--) {
 		console.log("iteration");
 		blog = blogs[i];
-		let name = Object.keys(window.database)[index];
+		let name = window.keys[index];
 		let blog_data = window.database[name];
 
 		blog.children[0].innerHTML = name;
@@ -128,7 +134,7 @@ function prevPage(){
 		blog.children[2].children[0].innerHTML = blog_data["creation_time"];
 		let start_file = blog_data["start_file"];
 		blog.children[2].children[1].innerHTML = `<a href="${start_file}">${re.exec(start_file)}</a>`;
-		if (index <= 0) {
+		if (index < 0) {
 			setIndex(0);
 			return;
 		}

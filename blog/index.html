@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="styles.css">
-	<script src="controller.js"></script>
 	<script>alert("This blog uses non-invasive and non-data-mining cookies. By using this website you consent to this website creating local files on your computer which are of no harm to you.")</script>
+	<script type="text/javascript" src="controller.js"></script>
 	<title>Ethien's blog</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
 	<div class="controller">
 		<div><button onclick="prevPage();">Previous Page</button></div>
 		<div><button onclick="copyIndex();">Copy blog-index to clipboard</button></div>
-		<div><input id="top-go-input" type="text" placeholder="Enter a blog-index"><button onclick="goToIndex('top-go-input');">Go</button></div>
+		<div><input id="top-go-input" type="text" placeholder="Enter an index"><button onclick="goToIndex('top-go-input');">Go</button></div>
 		<div><button onclick="nextPage();">Next Page</button></div>
 	</div>
 	<div id="blogs">
