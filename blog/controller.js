@@ -4,7 +4,7 @@ window.onload = (function () {
 		.then(response => response.json())
 			.then(json => {
 				console.log("Successful database fetch");
-				window.database = JSON.parse(json);
+				window.database = json;
 				let count = document.createElement("meta");
 				count.id = "blog_index";
 				count.index = "0";
