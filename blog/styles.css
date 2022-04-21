@@ -23,7 +23,7 @@ body {
 	justify-content:space-around;
 	flex-direction:row;
 }
-.controller>div>button {
+.controller>div>button,.controller>div>input {
 	color:orange;
 	background-color:black;
 	border-color:orange;
