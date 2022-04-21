@@ -128,7 +128,6 @@ function prevPage(){
 		blog.children[2].children[0].innerHTML = blog_data["creation_time"];
 		let start_file = blog_data["start_file"];
 		blog.children[2].children[1].innerHTML = `<a href="${start_file}">${re.exec(start_file)}</a>`;
-		index--;
 		if (index <= 0) {
 			setIndex(0);
 			return;
