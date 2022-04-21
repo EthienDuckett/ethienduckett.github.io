@@ -5,12 +5,12 @@ window.onload = (function () {
 			.then(json => {
 				console.log("Successful database fetch");
 				window.database = JSON.parse(json);
+				let count = document.createElement("meta");
+				count.id = "blog_index";
+				count.index = "0";
+				document.getRootNode().children[0].appendChild(count);
+				nextPage();
 			});
-	let count = document.createElement("meta");
-	count.id = "blog_index";
-	count.index = "0";
-	document.getRootNode().children[0].appendChild(count);
-	nextPage();
 })
 function nextPage(){
 	let count = document.getElementById("blog_index");

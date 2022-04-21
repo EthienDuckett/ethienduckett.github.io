@@ -6,9 +6,20 @@ if [[ -z $1 ]]; then
 	exit
 fi
 if [[ $1 = -h ]]; then
-	echo "arg_1: path+filename of the database."
+	echo "arg_1:"
+	echo -e "\t-h for help"
+	# Currently -c will delete new lines and tabs even if they are in the hook. 
+	echo -e "\t-c for line compression (without compression, you may have errors parsing the json). arg_2 will be input, arg_3 will be output."
+	echo -e "\tpath+filename of the database."
 	echo "arg_2: path+filename of the blog source html file"
 fi
+if [[ $1 = -c ]]; then
+	touch $3
+	tr -d "\n\t" < $2 > $3
+	exit
+fi
+
+
 if [[ -z $2 ]]; then
 	echo "Enter arg_2"
 	exit
