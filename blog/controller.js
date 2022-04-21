@@ -1,5 +1,5 @@
 window.onload = (function () {
-	let URL="Some valid URL for the database file"
+	let URL="https://ethienduckett.github.io/blog/database.json"
 	fetch(URL)
 		.then(response => response.json())
 			.then(json => {
