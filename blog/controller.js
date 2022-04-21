@@ -38,6 +38,31 @@ window.onload = (function () {
 				nextPage();
 			});
 })
+function copyIndex() {
+	navigator.clipboard.writeText(String(getIndex()));
+}
+function goToIndex(inputID) {
+	let input = document.getElementById(inputID);
+	try {
+		let num =Number(input.value);
+		if (isNaN(num)) {
+			throw "Not a number";
+		}
+	} catch (e) {
+		console.log(`error going to index ${e}`);
+		alert(`error going to index ${input.value}: ${e}`);
+		return;
+	}
+	let num = Number(input.value);
+	let blogs = document.getElementsByClassName("blog");
+	if (num >= blogs.length) {
+		num = blogs.length-1
+	} else if (num < 0) {
+		num = 0;
+	}
+	setIndex(num);
+	nextPage();
+}
 function nextPage(){
 	let index = getIndex();
 	let blogs = document.getElementsByClassName("blog");

@@ -10,10 +10,12 @@
 </head>
 <body>
 	<noscript><div><h1>The buttons will not work without noscript. I promise I am not making any nefarious network requests on your computer, you can check the source code if you don't believe me--so please enable JS to be able to read more blogs.</h1></div></noscript>
-	<div id="centerpiece"><h1>Welcome to Ethien's Blog!<br /><br />Let the orange soothe your tortured eyes.</h1></div>
+	<div id="centerpiece"><h1>Welcome to Ethien's Blog!<br /><br />Let the orange soothe your scorched eyes.</h1></div>
 	<div id="important"></div>
 	<div class="controller">
 		<div><button onclick="prevPage();">Previous Page</button></div>
+		<div><button onclick="copyIndex();">Copy blog-index to clipboard</button></div>
+		<div><input id="top-go-input" type="text" placeholder="Enter a blog-index"><button onclick="goToIndex('top-go-input');">Go</button></div>
 		<div><button onclick="nextPage();">Next Page</button></div>
 	</div>
 	<div id="blogs">
