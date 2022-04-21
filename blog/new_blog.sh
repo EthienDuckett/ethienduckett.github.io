@@ -19,7 +19,9 @@ if [[ ! -e $STARTFILE ]]; then
 	echo "the start file was not found... exiting"
 	exit
 fi
+INIT="false"
 if [[ ! -e $DATABASE ]]; then
+	INIT="true"
 	echo "creating database"
 	touch $DATABASE
 	if [[ ! -e $DATABASE ]]; then
@@ -58,10 +60,14 @@ cp $DATABASE $DUP
 echo -e '{' >> $TMP
 echo -e '\t"'$NAME'": {' >> $TMP
 DATE=$(date --utc)
-echo -e '\t\t"creation_time": "'$DATE'"' >> $TMP
-echo -e '\t\t"hook": "'$HOOK'"' >> $TMP
+echo -e '\t\t"creation_time": "'$DATE'",' >> $TMP
+echo -e '\t\t"hook": "'$HOOK'",' >> $TMP
 echo -e '\t\t"start_file": "'$STARTFILE'"' >> $TMP
-echo -e '\t},' >> $TMP
+if [[ $INIT = "true" ]]; then
+	echo -e '\t}' >> $TMP
+else
+	echo -e '\t},' >> $TMP
+fi
 cat $TMP $DUP > $DATABASE
 rm $TMP
 rm $DUP
