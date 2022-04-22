@@ -107,14 +107,13 @@ function prevPage(){
 	let index = getIndex();
 	let blogs = document.getElementsByClassName("blog");
 	if (window.lastPaging == "next") {
-		index -= blogs.length;
+		//index -= blogs.length;
 		if (index < 0) {
 			index=0;
 		}
 	}
 	window.lastPaging = "prev";
-	console.log("prevPage()");
-	if (index-len+1 <= 0) {
+	if (index <= 0) {
 		alert("There are no more blogs left");
 		return;
 	}
@@ -123,17 +122,16 @@ function prevPage(){
 	}
 	const re = new RegExp("(?<=\/).*");
 	let blog;
-	for (let i = blogs.length-1; i >= 0; i--) {
-		console.log("iteration");
+	for (let i = index; i >= 0; i--) {
 		blog = blogs[i];
 		let name = window.keys[index];
 		let blog_data = window.database[name];
-
 		blog.children[0].innerHTML = name;
 		blog.children[1].innerHTML = blog_data["hook"];
 		blog.children[2].children[0].innerHTML = blog_data["creation_time"];
 		let start_file = blog_data["start_file"];
 		blog.children[2].children[1].innerHTML = `<a href="${start_file}">${re.exec(start_file)}</a>`;
+		index--;
 		if (index < 0) {
 			setIndex(0);
 			return;
