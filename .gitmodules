@@ -1,3 +1,6 @@
 [submodule "learn_web"]
 	path = learn_web
 	url = https://github.com/EthienDuckett/learn_web.git
+[submodule "blog"]
+	path = blog
+	url = https://github.com/EthienDuckett/blog.git
